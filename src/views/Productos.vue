@@ -9,7 +9,10 @@
           <th>Imagen</th>
           <th>Precio</th>
           <th>Unidades</th>
+          <th>Descripcion</th>
           <th>Disponible</th>
+          <th>Aumentar</th>
+          <th>Disminuir</th>
         </tr>
       </thead>
       <tbody>
@@ -19,7 +22,10 @@
           <td><img :src="item.image" :alt="index+1"></td>
           <td>{{item.precio}}</td>
           <td>{{item.unidades}}</td>
+          <td>{{item.descripcion}}</td>
           <td :class="{noDisponible: !item.disponible}">{{item.disponible ? 'Se encuentra Disponible' : 'No esta Disponible'}}</td>
+          <td><button class="btn btn-success" @click="aumenta(index)">Aumentar</button></td>
+          <td><button class="btn btn-danger" @click="disminuye(index)">Dismuniur</button></td>
         </tr>
       </tbody>
     </table>
@@ -34,6 +40,14 @@ export default {
       return this.$store.getters.enviandoDatosRyM;
     }
   },
+  methods: {
+    aumenta(index){
+      this.$store.dispatch('aumentaProduct',index);
+    },
+    disminuye(index){
+      this.$store.dispatch('disminuyeProduct',index);
+    }
+  },
 }
 </script>
 
@@ -44,5 +58,8 @@ export default {
   }
   .noDisponible {
     background-color:rgba(141, 97, 97,0.5);
+  }
+  th,tr,td {
+    vertical-align: middle;
   }
 </style>
