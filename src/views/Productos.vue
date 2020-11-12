@@ -24,8 +24,8 @@
           <td>{{item.unidades}}</td>
           <td>{{item.descripcion}}</td>
           <td :class="{noDisponible: !item.disponible}">{{item.disponible ? 'Se encuentra Disponible' : 'No esta Disponible'}}</td>
-          <td><button class="btn btn-success" @click="aumenta(index)">Aumentar</button></td>
-          <td><button class="btn btn-danger" @click="disminuye(index)">Dismuniur</button></td>
+          <td><button class="btn btn-success" @click="aumentaProduct(index)">Aumentar</button></td>
+          <td><button class="btn btn-danger" @click="disminuyeProduct(index)">Dismuniur</button></td>
         </tr>
       </tbody>
     </table>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: 'Productos',
   computed: {
@@ -41,12 +43,13 @@ export default {
     }
   },
   methods: {
-    aumenta(index){
+    ...mapActions(['aumentaProduct','disminuyeProduct'])
+/*     aumenta(index){
       this.$store.dispatch('aumentaProduct',index);
     },
     disminuye(index){
       this.$store.dispatch('disminuyeProduct',index);
-    }
+    } */
   },
 }
 </script>
