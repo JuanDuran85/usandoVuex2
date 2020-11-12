@@ -22,3 +22,5 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+# usandoVuex2
+Implementado Vuex con Vue Router, Bootstrap y SweetAlert - G3
