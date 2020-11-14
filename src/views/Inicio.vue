@@ -14,18 +14,56 @@
       <label for="">Modificar Nombre Completo</label>
       <input type="text" class="form-control" placeholder="Nombre y Apellido" v-model="nombreCompleto">
     </div>
+    <h2>Usando Ciclo de Vida, primesas, async-await</h2>
+    <div class="alert alert-info" role="alert" v-if="!mostrarInfo">
+      <div class="spinner-grow text-primary text-center" role="status">
+        <span class="sr-only">{{this.mensaje}}</span>
+      </div>
+    </div>
+    <div v-else class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Dirección</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in dataUsuarios" :key="index">
+            <td>{{item.id}}</td>
+            <td>{{item.nombre}}</td>
+            <td>{{item.apellido}}</td>
+            <td>{{item.direccion}}</td>
+            <td>{{item.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-
+const infoUsuario = [
+  {id: 1,nombre: 'Anabelle' , apellido: 'Jones', direccion: '336 Lennie Brook', email: 'Rachelle_Volkman62@yahoo.com'},
+  {id: 2,nombre: 'Jarvis' , apellido: 'Funk', direccion: '59082 Fisher Overpass', email: 'Sallie.Green87@hotmail.com'},
+  {id: 3,nombre: 'Lillie' , apellido: 'Wisozk', direccion: '937 Olin Meadows', email: 'Maximillian.Towne@gmail.com'},
+  {id: 4,nombre: 'Scot' , apellido: 'Abernathy', direccion: '28680 Grimes Meadow', email: 'Maude.Steuber@gmail.com'},
+  {id: 5,nombre: 'Lazaro' , apellido: 'Purdy', direccion: '78255 Janet Shore', email: 'Rashad23@hotmail.com'},
+  {id: 6,nombre: 'Astrid' , apellido: 'Armstrong', direccion: '34130 Athena Burg', email: 'Amara.Jacobs90@yahoo.com'},
+];
 export default {
   name: 'Home',
   data() {
     return {
       nombre: 'Pedro',
-      apellido: 'Perez'
+      apellido: 'Perez',
+      dataUsuarios: [],
+      mensaje: "",
+      mostrarInfo: false,
     }
   },
   computed: {
@@ -42,12 +80,23 @@ export default {
         this.apellido = nombres.length === 1 ? '' : nombres[nombres.length-1];
       }
     }
-/*     traerMsg1(){
-      return this.$store.getters.enviandoMsg1;
+  },
+  created(){
+    this.cargarDatos();
+  },
+  methods: {
+    async mostrarDatos(){
+      return new Promise(resolve => {
+        setTimeout(()=>resolve(infoUsuario),3500);
+      })
     },
-    traerMsg2(){
-      return this.$store.getters.enviandoMsg2;
-    } */
+    async cargarDatos(){
+      this.dataUsuarios = [];
+      this.mensaje = "Espere un momento, buscando información";
+      this.dataUsuarios = await this.mostrarDatos();
+      this.mostrarInfo = true
+      this.mensaje = "";
+    }
   },
 }
 </script>
