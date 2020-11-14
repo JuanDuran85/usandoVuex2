@@ -6,15 +6,15 @@
         <div class="card">
           <img :src="item.image" class="card-img-top" :alt="index+1">
           <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
-            <p class="card-text">{{item.descripcion}}</p>
+            <h5 class="card-title">{{item.name | mayuscula}}</h5>
+            <p class="card-text">{{item.descripcion | capitaliza}}</p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Unidades: {{item.unidades}}</li>
             <li class="list-group-item">Precio: {{item.precio}}</li>
           </ul>
           <div class="card-body">
-            <a href="#" class="btn btn-primary">Comprar</a>
+            <a href="#" class="btn btn-primary" @click="comprandoP(item)">Comprar</a>
           </div>
         </div>
       </div>
@@ -27,12 +27,33 @@ import { mapGetters } from "vuex";
 
 export default {
   name: 'ProductoVenta',
+  data() {
+    return {
+      comprado: false
+    }
+  },
   computed: {
     ...mapGetters(['enviandoDatosRyMDispo'])
 /*     traerProducDisp(){
       return this.$store.getters.enviandoDatosRyMDispo;
     } */
   },
+  methods: {
+    comprandoP(valor){
+      this.comprado = !this.comprado;
+      console.log(valor);
+    }
+  },
+  watch: {
+    comprado(nuevo,viejo){
+      console.log(nuevo, viejo);
+    }
+  },
+  filters: {
+    mayuscula(valor){
+      return valor.toUpperCase();
+    }
+  }
 }
 </script>
 

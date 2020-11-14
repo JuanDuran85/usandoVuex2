@@ -7,6 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 Vue.config.productionTip = false;
 
+Vue.filter('capitaliza', (valor)=> {
+  if (!valor) return '';
+  valor = valor.toString();
+  return valor.charAt(0).toUpperCase() + valor.slice(1);
+});
+
 new Vue({
   router,
   store,
