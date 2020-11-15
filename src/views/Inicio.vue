@@ -29,6 +29,7 @@
             <th>Apellido</th>
             <th>Dirección</th>
             <th>Email</th>
+            <th>Fecha</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +39,7 @@
             <td>{{item.apellido}}</td>
             <td>{{item.direccion}}</td>
             <td>{{item.email}}</td>
+            <td>{{item.nacimiento}}</td>
           </tr>
         </tbody>
       </table>
@@ -47,13 +49,15 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { format } from "date-fns";
+
 const infoUsuario = [
-  {id: 1,nombre: 'Anabelle' , apellido: 'Jones', direccion: '336 Lennie Brook', email: 'Rachelle_Volkman62@yahoo.com'},
-  {id: 2,nombre: 'Jarvis' , apellido: 'Funk', direccion: '59082 Fisher Overpass', email: 'Sallie.Green87@hotmail.com'},
-  {id: 3,nombre: 'Lillie' , apellido: 'Wisozk', direccion: '937 Olin Meadows', email: 'Maximillian.Towne@gmail.com'},
-  {id: 4,nombre: 'Scot' , apellido: 'Abernathy', direccion: '28680 Grimes Meadow', email: 'Maude.Steuber@gmail.com'},
-  {id: 5,nombre: 'Lazaro' , apellido: 'Purdy', direccion: '78255 Janet Shore', email: 'Rashad23@hotmail.com'},
-  {id: 6,nombre: 'Astrid' , apellido: 'Armstrong', direccion: '34130 Athena Burg', email: 'Amara.Jacobs90@yahoo.com'},
+  {id: 1,nombre: 'Anabelle' , apellido: 'Jones', direccion: '336 Lennie Brook', email: 'Rachelle_Volkman62@yahoo.com', nacimiento: format(new Date(1989,11,17),'dd-MM-yyyy')},
+  {id: 2,nombre: 'Jarvis' , apellido: 'Funk', direccion: '59082 Fisher Overpass', email: 'Sallie.Green87@hotmail.com', nacimiento: format(new Date(1998,7,6),'dd-MM-yyyy')},
+  {id: 3,nombre: 'Lillie' , apellido: 'Wisozk', direccion: '937 Olin Meadows', email: 'Maximillian.Towne@gmail.com', nacimiento: format(new Date(1970.4,12),'dd-MM-yyyy')},
+  {id: 4,nombre: 'Scot' , apellido: 'Abernathy', direccion: '28680 Grimes Meadow', email: 'Maude.Steuber@gmail.com', nacimiento: format(new Date(1995,3,20),'dd-MM-yyyy')},
+  {id: 5,nombre: 'Lazaro' , apellido: 'Purdy', direccion: '78255 Janet Shore', email: 'Rashad23@hotmail.com', nacimiento: format(new Date(1945,7,7),'dd-MM-yyyy')},
+  {id: 6,nombre: 'Astrid' , apellido: 'Armstrong', direccion: '34130 Athena Burg', email: 'Amara.Jacobs90@yahoo.com', nacimiento: format(new Date(1981,12,5),'dd MMM, yyyy')},
 ];
 export default {
   name: 'Home',
@@ -79,7 +83,7 @@ export default {
         this.nombre = nombres[0];
         this.apellido = nombres.length === 1 ? '' : nombres[nombres.length-1];
       }
-    }
+    },
   },
   created(){
     this.cargarDatos();

@@ -21,6 +21,7 @@
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.5.3",
+    "date-fns": "^2.16.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "jquery": "^3.5.1",
